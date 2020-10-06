@@ -70,11 +70,12 @@ template <class ValType>
 TVector<ValType>::TVector(int s, int si)
 {
 	if ((s < 0 || MAX_VECTOR_SIZE < s) 
-		|| (si < 0 || s <= si)) throw exception("Illegal arguments");
+		|| (si < 0 || s < si)) throw exception("Illegal arguments");
 	Size = s;
 	StartIndex = si;
 	pVector = new ValType[Size - StartIndex];
-	
+	for (int i = 0; i < Size - StartIndex; i++)
+		pVector[i] = ValType(0);
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> //конструктор копирования

@@ -60,13 +60,13 @@ TEST(TMatrix, can_set_and_get_element)
 TEST(TMatrix, throws_when_set_element_with_negative_index)
 {
 	TMatrix<int> m(15);
-	ASSERT_ANY_THROW(m[-12][1]);
+	ASSERT_ANY_THROW(m[-12][1] = 5);
 }
 
 TEST(TMatrix, throws_when_set_element_with_too_large_index)
 {
 	TMatrix<int> m(15);
-	ASSERT_ANY_THROW(m[1][m.GetSize() + 10]);
+	ASSERT_ANY_THROW(m[1][m.GetSize() + 10] = 5);
 }
 
 TEST(TMatrix, can_assign_matrix_to_itself)
@@ -115,7 +115,7 @@ TEST(TMatrix, compare_equal_matrices_return_true)
 		for (int j = i; j < m1.GetSize(); j++)
 			m1[i][j] = i + j;
 	TMatrix<int> m2(m1);
-	EXPECT_EQ(m1, m2);
+	EXPECT_EQ(true, m1 == m2);
 }
 
 TEST(TMatrix, compare_matrix_with_itself_return_true)
@@ -124,14 +124,14 @@ TEST(TMatrix, compare_matrix_with_itself_return_true)
 	for (int i = 0; i < m.GetSize(); i++)
 		for (int j = i; j < m.GetSize(); j++)
 			m[i][j] = i + j;
-	EXPECT_EQ(m, m);
+	EXPECT_EQ(true, m == m);
 }
 
 TEST(TMatrix, matrices_with_different_size_are_not_equal)
 {
 	TMatrix<int> m1(5);
 	TMatrix<int> m2(6);
-	EXPECT_NE(m1, m2);
+	EXPECT_EQ(true, m1 != m2);
 }
 
 TEST(TMatrix, can_add_matrices_with_equal_size)

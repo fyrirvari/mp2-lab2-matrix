@@ -70,13 +70,13 @@ TEST(TVector, can_set_and_get_element)
 TEST(TVector, throws_when_set_element_with_negative_index)
 {
 	TVector<int> v(4);
-	ASSERT_ANY_THROW(v[-2]);
+	ASSERT_ANY_THROW(v[-2] = 0);
 }
 
 TEST(TVector, throws_when_set_element_with_too_large_index)
 {
 	TVector<int> v(4);
-	ASSERT_ANY_THROW(v[10]);
+	ASSERT_ANY_THROW(v[10] = 0);
 }
 
 TEST(TVector, can_assign_vector_to_itself)
@@ -122,7 +122,7 @@ TEST(TVector, compare_equal_vectors_return_true)
 		v1[i] = i;
 	}
 	TVector<int> v2(v1);
-	EXPECT_EQ(v1, v2);
+	EXPECT_EQ(true, v1 == v2);
 }
 
 TEST(TVector, compare_vector_with_itself_return_true)
@@ -132,7 +132,7 @@ TEST(TVector, compare_vector_with_itself_return_true)
 	{
 		v1[i] = i;
 	}
-	EXPECT_EQ(v1, v1);
+	EXPECT_EQ(true, v1 == v1);
 }
 
 TEST(TVector, vectors_with_different_size_are_not_equal)
@@ -140,7 +140,7 @@ TEST(TVector, vectors_with_different_size_are_not_equal)
 	TVector<int> v1(15);
 	TVector<int> v2(10);
 	EXPECT_NE(v2.GetSize(), v1.GetSize());
-	EXPECT_NE(v1, v2);
+	EXPECT_EQ(true, v1 != v2);
 }
 
 TEST(TVector, can_add_scalar_to_vector)
