@@ -75,7 +75,7 @@ TVector<ValType>::TVector(int s, int si)
 	StartIndex = si;
 	pVector = new ValType[Size - StartIndex];
 	for (int i = 0; i < Size - StartIndex; i++)
-		pVector[i] = ValType(0);
+		pVector[i] = 0;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> //конструктор копирования
